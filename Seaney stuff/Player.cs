@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Diagnostics;
 
-public class Player : KinematicBody
+public class Player : KinematicBody2D
 {
 	[Export]
 	private float Speed;
@@ -22,23 +22,23 @@ public class Player : KinematicBody
 
 	public override void _PhysicsProcess(float delta)
 	{
-		var change = new Vector3(0,0,0);
+		var change = new Vector2(0,0);
 			
 		if (Input.IsActionPressed("player_move_right"))
 		{
-			change += new Vector3(Speed * delta, 0, 0);
+			change += new Vector2(Speed * delta, 0);
 		}
 		if (Input.IsActionPressed("player_move_left"))
 		{
-			change += new Vector3(-Speed * delta, 0, 0);
+			change += new Vector2(-Speed * delta,0);
 		}
 		if (Input.IsActionPressed("player_move_up"))
 		{
-			change += new Vector3(0, 0, -Speed * delta);
+			change += new Vector2(0,  -Speed * delta);
 		}
 		if (Input.IsActionPressed("player_move_down"))
 		{
-			change += new Vector3(0, 0, Speed * delta);
+			change += new Vector2(0, Speed * delta);
 		}
 		//Debug.WriteLine("Move Vector : " + change.ToString());
 		MoveAndCollide(change);
